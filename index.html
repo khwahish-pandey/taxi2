@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TaxiGo - Reliable taxi services">
+    <title>TaxiGo - Book Your Ride</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        #nav {
+            height: 70px;
+            background-color: rgb(4, 1, 23);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+           
+        }
+
+        #logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+        }
+
+        #logo i {
+            font-size: 30px;
+        }
+
+        #logo:hover {
+            opacity: 0.8;
+        }
+
+        .nav-item {
+            color: white;
+            font-size: 16px;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        #pic {
+            display: flex;
+            min-height: 400px;
+            margin: 20px 0;
+        }
+
+        #sea {
+            width: 40%;
+        }
+
+        #sea img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #FROM {
+            background-color: rgb(20, 19, 47);
+            width: 60%;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        #pickup{
+            height: 40px;
+            width: 500px;
+        }
+        #dropoff{
+            height: 40px;
+            width: 500px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: white;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        #select {
+            height: 40px;
+            width: 100%;
+            max-width: 500px;
+            padding: 0 10px;
+            border-radius: 4px;
+            border: none;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        #gadi {
+            font-size: 50px;
+            color: white;
+            position: absolute;
+            bottom: 20px;
+            animation: carAnimation 8s linear infinite;
+        }
+
+        @keyframes carAnimation {
+            0% { left: -100px; }
+            100% { left: calc(100% + 100px); }
+        }
+
+        #transport-options {
+            display: none;
+            margin-top: 30px;
+            color: white;
+        }
+
+        .transport-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: transform 0.3s ease;
+        }
+
+        .transport-card:hover {
+            transform: translateX(10px);
+        }
+
+        .transport-icon {
+            font-size: 30px;
+            margin-right: 15px;
+        }
+
+        .book-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .book-btn:hover {
+            background-color: #45a049;
+        }
+
+        @media (max-width: 768px) {
+            #pic {
+                flex-direction: column;
+            }
+
+            #sea, #FROM {
+                width: 100%;
+            }
+
+            #nav {
+                flex-direction: column;
+                height: auto;
+                padding: 10px;
+            }
+
+            #logo {
+                margin-bottom: 10px;
+            }
+
+            .transport-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .transport-icon {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav id="nav">
+            <a href="#" id="logo">
+                <i class="fa-solid fa-caravan"></i>
+                <span>taxiGo</span>
+            </a>
+            <div>
+                <a href="#" class="nav-item" id="acc">Account</a>
+                <a href="#" class="nav-item" id="cart">Help</a>
+                <a href="#" class="nav-item" id="about">
+                    <i class="fa-solid fa-clock-rotate-left"></i> History
+                </a>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <div id="pic">
+            <div id="sea">
+                <img src="Airport-Fall.webp" alt="Taxi service at airport" height="400px">
+            </div>
+            <div id="FROM">
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="pickup">Pickup location</label>
+                        <select name="pickup" id="pickup" required>
+                            <option value="">Select pickup location</option>
+                            <option value="jaynagar">Jaya Nagar 1st Block 4th Block Jayanagar, Bengaluru 560041 India.</option>
+                            <option value="whitefield">3rd Cross Road, Vijay Nagar, Whitefield Pin code(560066)</option>
+                            <option value="banashankri">Shavige Malleshwara Hills, Kumaraswamy Layout, Bangalore 560 111, Karnataka, India</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dropoff">Drop off location</label>
+                        <select name="dropoff" id="dropoff" required>
+                            <option value="">Select dropoff location</option>
+                            <option value="jaynagar">No.67/1B, Same Lane As Klipsch and High Gloss Salon, 4th Cross.Shanthala Nagar, Lavelle Road-560001.</option>
+                            <option value="whitefield">Style Union, HSR Layout, bengaluru. Clothing Store Store in HSR Layout, bengaluru, karnataka · 27th Main, Sector-1, Nearby Bharat Petroleum, HSR Layout</option>
+                            <option value="go">Mantri Square Sampige Road,Malleshwaram, Bengaluru, Karnataka 560003</option>
+                        </select>
+                    </div>
+                </form>
+                
+                <div id="transport-options">
+                    
+                </div>
+                
+                <div id="gadi"><i class="fa-solid fa-car-side"></i></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const pickup = document.getElementById('pickup');
+            const dropoff = document.getElementById('dropoff');
+            const transportOptions = document.getElementById('transport-options');
+
+            function showTransportOptions() {
+                if (pickup.value && dropoff.value) {
+                    transportOptions.style.display = 'block';
+                    
+                    transportOptions.innerHTML = `
+                        <h3 style="color: white; margin-bottom: 15px;">Available Rides:</h3>
+                        <div class="transport-card">
+                            <div>
+                                <i class="fas fa-auto-rickshaw transport-icon"></i>
+                                <h3>Auto Rickshaw</h3>
+                                <p>₹52</p>
+                            </div>
+                            <button class="book-btn" data-mode="auto">Book Now</button>
+                        </div>
+                        
+                        <div class="transport-card">
+                            <div>
+                                <i class="fas fa-car transport-icon"></i>
+                                <h3>Car</h3>
+                                <p>₹103</p>
+                            </div>
+                            <button class="book-btn" data-mode="car">Book Now</button>
+                        </div>
+                        
+                        <div class="transport-card">
+                            <div>
+                                <i class="fas fa-motorcycle transport-icon"></i>
+                                <h3>Motorcycle</h3>
+                                <p>₹28</p>
+                            </div>
+                            <button class="book-btn" data-mode="moto">Book Now</button>
+                        </div>
+                    `;
+
+                    document.querySelectorAll('.book-btn').forEach(button => {
+                        button.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const mode = button.dataset.mode;
+                            const pickupLocation = pickup.options[pickup.selectedIndex].text;
+                            const dropoffLocation = dropoff.options[dropoff.selectedIndex].text;
+                            
+                            alert(`Booking confirmed!\n
+                                  Mode: ${mode}\n
+                                  From: ${pickupLocation}\n
+                                  To: ${dropoffLocation}`);
+                        });
+                    });
+                } 
+            }
+
+            pickup.addEventListener('change', showTransportOptions);
+            dropoff.addEventListener('change', showTransportOptions);
+        });
+    </script>
+</body>
+</html>
